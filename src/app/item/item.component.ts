@@ -21,7 +21,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class ItemComponent implements OnInit {
   @Input() todoItem: any;
   @Output() remove: EventEmitter<any> = new EventEmitter();
-  private isComplete = false;
+  isComplete = false;
 
   constructor() { }
 
