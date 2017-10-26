@@ -1,3 +1,5 @@
+import { TodoListStorageService } from './todo-list-storage.service';
+import { TodoListService } from './todo-list.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -16,7 +18,10 @@ import { ListManagerComponent } from './list-manager/list-manager.component';
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [
+    TodoListService,
+    TodoListStorageService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
