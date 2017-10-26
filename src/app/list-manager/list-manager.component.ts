@@ -12,7 +12,9 @@ import { Component, OnInit } from '@angular/core';
     <todo-input (submit)="addItem($event)"></todo-input>
     <ul>
       <li *ngFor="let item of todoList">
-        <todo-item [todoItem]="item"></todo-item>
+        <todo-item
+          [todoItem]="item"
+          (remove)="removeItem($event)"></todo-item>
       </li>
     </ul>
   </div>
@@ -31,6 +33,10 @@ export class ListManagerComponent implements OnInit {
 
   addItem(title: string): void {
     this.todoList = this.todoListService.addItem({title: title});
+  }
+
+  removeItem(item) {
+    this.todoList = this.todoListService.removeItem(item);
   }
 
 }
