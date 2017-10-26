@@ -11,12 +11,11 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
     <button
       (click)="changeTitle(inputElement.value)"
       class="btn">Save</button>
-    <p>The title is: {{title}}</p>
   `,
   styleUrls: ['./input.component.css']
 })
 export class InputComponent implements OnInit {
-  title = 'My First Todo Title!!';
+  title = '';
   @Output() submit: EventEmitter<string> = new EventEmitter();
 
   constructor() {
