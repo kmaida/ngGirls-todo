@@ -3,11 +3,11 @@ import * as auth0 from 'auth0-js';
 
 @Injectable()
 export class AuthService {
-  webAuth = new auth0.webAuth({
+  webAuth = new auth0.WebAuth({
     domain: 'kmaida.auth0.com',
     clientID: 'hE9X1NJkMWSBQ73tEutu7vqaNXB7vVFl',
     responseType: 'token id_token',
-    redirectUri: 'http://localhost:4200/callback',
+    redirectUri: 'http://localhost:4200',
     scope: 'openid profile'
   });
   userProfile: any;
