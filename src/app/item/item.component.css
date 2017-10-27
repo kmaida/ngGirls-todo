@@ -17,14 +17,6 @@
   padding-left: 11px;
 }
 
-.btn-red {
-  background: red;
-}
-
-.btn-red:hover {
-  background: darkred;
-}
-
 .todo-complete {
   text-decoration: line-through;
 }
