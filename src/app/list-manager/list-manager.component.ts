@@ -34,7 +34,7 @@ export class ListManagerComponent implements OnInit {
   }
 
   addItem(title: string): void {
-    this.todoList = this.todoListService.addItem({title: title});
+    this.todoList = this.todoListService.addItem({title});
   }
 
   removeItem(item) {
