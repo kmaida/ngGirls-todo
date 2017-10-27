@@ -1,3 +1,4 @@
+import { AuthService } from './auth.service';
 import { TodoListStorageService } from './todo-list-storage.service';
 import { TodoListService } from './todo-list.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -20,7 +21,8 @@ import { ListManagerComponent } from './list-manager/list-manager.component';
   ],
   providers: [
     TodoListService,
-    TodoListStorageService
+    TodoListStorageService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
