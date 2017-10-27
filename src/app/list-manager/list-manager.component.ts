@@ -9,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
       {{title}}
     </h1>
 
-    <todo-input (submit)="addItem($event)"></todo-input>
+    <div class="todo-add">
+      <todo-input (submit)="addItem($event)"></todo-input>
+    </div>
     <ul>
       <li *ngFor="let item of todoList">
         <todo-item
