@@ -3,6 +3,7 @@ import * as auth0 from 'auth0-js';
 
 @Injectable()
 export class AuthService {
+  // Create Auth0 WebAuth instance
   webAuth = new auth0.WebAuth({
     domain: '[AUTH0_DOMAIN]', // e.g., yourname.auth0.com
     clientID: '[AUTH0_CLIENT_ID]',
@@ -10,6 +11,7 @@ export class AuthService {
     redirectUri: 'http://localhost:4200',
     scope: 'openid profile'
   });
+  // Store the user's profile locally once they log in
   userProfile: any;
 
   constructor() {
