@@ -16,6 +16,7 @@ import { Component, OnInit } from '@angular/core';
       <li *ngFor="let item of todoList">
         <todo-item
           [todoItem]="item"
+          (saveEdit)="editItem($event)"
           (remove)="removeItem($event)"></todo-item>
       </li>
     </ul>
@@ -39,6 +40,11 @@ export class ListManagerComponent implements OnInit {
 
   removeItem(item) {
     this.todoList = this.todoListService.removeItem(item);
+  }
+
+  editItem(event) {
+    console.log(event);
+    this.todoList = this.todoListService.editItem(event.oldTitle, event.newTitle);
   }
 
 }

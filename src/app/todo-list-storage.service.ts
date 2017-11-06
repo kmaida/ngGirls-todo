@@ -20,6 +20,7 @@ export class TodoListStorageService {
 
   // get items
   get(): any[] {
+    console.log([...this.todoList]);
     return [...this.todoList];
   }
 
