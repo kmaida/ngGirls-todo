@@ -7,7 +7,7 @@ export class AuthService {
   webAuth = new auth0.WebAuth({
     domain: '[AUTH0_DOMAIN]', // e.g., yourname.auth0.com
     clientID: '[AUTH0_CLIENT_ID]',
-    responseType: 'token id_token',
+    responseType: 'token',
     redirectUri: 'http://localhost:4200',
     scope: 'openid profile'
   });
@@ -32,7 +32,7 @@ export class AuthService {
     // When Auth0 hash parsed, execute method
     // to get user's profile and set session
     this.webAuth.parseHash((err, authResult) => {
-      if (authResult && authResult.accessToken && authResult.idToken) {
+      if (authResult && authResult.accessToken) {
         window.location.hash = '';
         this._profileSession(authResult);
       } else if (err) {
@@ -48,7 +48,6 @@ export class AuthService {
         const expTime = authResult.expiresIn * 1000 + Date.now();
         // Store session data and profile in local storage
         localStorage.setItem('access_token', authResult.accessToken);
-        localStorage.setItem('id_token', authResult.idToken);
         localStorage.setItem('profile', JSON.stringify(profile));
         localStorage.setItem('expires_at', JSON.stringify(expTime));
         this.userProfile = profile;
@@ -59,7 +58,6 @@ export class AuthService {
   logout(): void {
     // Remove tokens, profile, and expiration data from local storage
     localStorage.removeItem('access_token');
-    localStorage.removeItem('id_token');
     localStorage.removeItem('profile');
     localStorage.removeItem('expires_at');
     this.userProfile = undefined;
