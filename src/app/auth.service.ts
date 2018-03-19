@@ -10,7 +10,7 @@ export class AuthService {
     clientID: '[AUTH0_CLIENT_ID]',
     responseType: 'token',
     redirectUri: 'http://localhost:4200',
-    audience: `https://${this.AUTH0_DOMAIN}/userinfo`,
+    audience: `https://${this.AUTH0_DOMAIN}/userinfo`, // This audience grants access to user profile data
     scope: 'openid profile email'
   });
   // Store the user's profile locally once they log in
@@ -19,22 +19,18 @@ export class AuthService {
   accessToken: string;
 
   constructor() {
-    if (this.isLoggedIn) {
-      // If already authenticated on init of app from a
-      // previous session, set local userProfile member
-      this.userProfile = JSON.parse(localStorage.getItem('profile'));
-    }
+    // You should explore token renewal with checkSession() to restore user login when returning
+    // to an app with an unexpired session:
+    // https://auth0.com/docs/libraries/auth0js/v9#using-checksession-to-acquire-new-tokens
   }
 
   login(): void {
-    // Send Auth0 authorize request; opens
-    // the Auth0 centralized login page
+    // Send Auth0 authorize request; opens the Auth0 login page
     this._webAuth.authorize();
   }
 
   handleLoginCallback(): void {
-    // When Auth0 hash parsed, execute method
-    // to get user's profile and set session
+    // When Auth0 hash parsed, execute method to get user's profile and set session
     this._webAuth.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken) {
         window.location.hash = '';
@@ -59,17 +55,15 @@ export class AuthService {
   }
 
   logout(): void {
-    // Remove tokens, profile, and expiration data from local storage
+    // Remove tokens, profile, and expiration data
     localStorage.removeItem('expires_at');
     this.accessToken = undefined;
     this.userProfile = undefined;
   }
 
   get isLoggedIn(): boolean {
-    // Check if current date is greater than expiration
-    // and an access token and profile are available.
-    // This is an accessor, so calling it does not
-    // require use of parens; e.g., isLoggedIn
+    // Check if current date is greater than expiration and an access token and profile are available.
+    // This is an accessor, so calling it does not require use of parens; e.g., isLoggedIn
     const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
     return (Date.now() < expiresAt) && this.accessToken && this.userProfile;
   }
