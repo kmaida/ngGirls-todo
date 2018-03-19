@@ -6,10 +6,10 @@ import { Component, OnInit } from '@angular/core';
   template: `
     <div class="todo-auth">
       <button
-        *ngIf="!authService.authenticated"
+        *ngIf="!authService.isLoggedIn"
         (click)="authService.login()"
         class="btn">Log In</button>
-      <ng-template [ngIf]="authService.authenticated">
+      <ng-template [ngIf]="authService.isLoggedIn">
         <img [src]="authService.userProfile?.picture" />{{authService.userProfile?.name}}
         <button
           (click)="authService.logout()"

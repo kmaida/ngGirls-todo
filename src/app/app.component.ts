@@ -11,6 +11,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   constructor(private authService: AuthService) {
-    this.authService.handleAuth();
+    this.authService.handleLoginCallback();
   }
 }
