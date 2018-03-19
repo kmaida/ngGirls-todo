@@ -10,11 +10,11 @@ import { Component, OnInit } from '@angular/core';
         {{title}}
       </h1>
 
-      <p *ngIf="!authService.authenticated">
+      <p *ngIf="!authService.isLoggedIn">
         You must log in to access the todo app!
       </p>
 
-      <ng-template [ngIf]="authService.authenticated">
+      <ng-template [ngIf]="authService.isLoggedIn">
         <div class="todo-add">
           <todo-input (submit)="addItem($event)"></todo-input>
         </div>
